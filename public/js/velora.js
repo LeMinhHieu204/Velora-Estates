@@ -89,6 +89,7 @@
     qsa('[data-open-tour]').forEach((button) => button.addEventListener('click', () => setModal(true)));
     qsa('[data-close-tour]').forEach((button) => button.addEventListener('click', () => setModal(false)));
     qs('[data-tour-form]')?.addEventListener('submit', (event) => {
+        if (event.currentTarget.dataset.persist === 'true') return;
         event.preventDefault();
         setModal(false);
         event.currentTarget.reset();
@@ -131,6 +132,7 @@
         };
         qsa('input, select, textarea', contactForm).forEach((field) => field.addEventListener('input', () => clearFieldError(field)));
         contactForm.addEventListener('submit', (event) => {
+            if (contactForm.dataset.persist === 'true') return;
             event.preventDefault();
             const fields = ['full_name', 'email', 'inquiry_type', 'message'].map((name) => contactForm.elements[name]);
             let firstInvalid = null;

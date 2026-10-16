@@ -32,7 +32,7 @@ The product currently includes three public Blade-rendered views:
 | --- | --- |
 | `/` | Homepage with hero, property search preview, featured cards, service story, demo agent profiles, demo testimonial carousel and contact enquiry preview. |
 | `/properties` | Fixture-driven catalog with location, property-type, price and bedroom controls, client-side filtering, sorting, responsive filter drawer and property cards. |
-| `/properties/{slug}` | Property detail preview with gallery thumbnails, lightbox, save/share affordances, specifications, features, floor-plan presentation, tour preview and related properties. |
+| `/properties/{slug}` | Property detail preview with gallery thumbnails, lightbox, save/share affordances, specifications, features, floor-plan presentation, tour preview and related properties. Unknown slugs return 404. |
 
 There is no verified deployment URL or live demo link in this repository, so none is advertised here.
 
@@ -234,7 +234,7 @@ node --check public/js/velora.js
 The following checks were run against the current checkout on 2026-10-14:
 
 - `php artisan view:cache --no-interaction` — passed.
-- `php artisan test --compact` — passed: 2 tests, 2 assertions.
+- `php artisan test --compact` — passed after the invalid-slug regression: 3 tests, 4 assertions.
 - `node --check public/js/velora.js` — passed.
 - `/`, `/properties` and `/properties/aegean-horizon-villa` — returned HTTP 200 from the local server.
 - `npm run build` — not completed in this checkout because `node_modules` and the local Vite executable are not installed.
